@@ -1,19 +1,26 @@
 import 'package:firebase_fl/features/feathersImport.dart';
+import 'package:firebase_fl/repos/Models/dataModels.dart';
 
 class GoogleState {
-  final User? user;
+  User? user;
 
   GoogleState({required this.user});
 }
 
 class EmailState {
-  final User? user;
+  User? user;
 
   EmailState({required this.user});
 }
 
-class PhoneState {
-  final User? user;
+// class PhoneState {
+//   final User? user;
 
-  PhoneState({required this.user});
+//   PhoneState({required this.user});
+// }
+
+class PhoneState {
+  String phonenumber;
+
+  PhoneState({required this.phonenumber});
 }

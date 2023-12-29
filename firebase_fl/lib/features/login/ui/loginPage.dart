@@ -89,8 +89,10 @@ class _emailmethodState extends State<emailmethod> {
                 ),
                 kButton(
                   onpress: () {
-                    _authEmail.add(
-                        loginEmail(email: email.text, passcode: passcode.text));
+                    _authEmail.add(loginEmail(
+                        email: email.text,
+                        passcode: passcode.text,
+                        context: context));
                   },
                   text: 'Email Login',
                 ),
@@ -186,7 +188,9 @@ class _verifyotpState extends State<verifyotp> {
                   kButton(
                     onpress: () {
                       _phnBloc.add(verifyphnotpEvent(
-                          otp: code.text.toString(), id: widget.id));
+                          context: context,
+                          otp: code.text.toString(),
+                          id: widget.id));
                     },
                     text: 'Validate Phn auth',
                   ),

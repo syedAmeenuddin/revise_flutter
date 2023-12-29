@@ -14,6 +14,7 @@ dependencies:
   google_sign_in: ^6.2.1
   bloc:
   flutter_bloc:
+  equatable:
 
 dev_dependencies:
   flutter_test:

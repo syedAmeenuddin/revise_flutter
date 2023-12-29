@@ -4,7 +4,7 @@ class firebaseAuthgooogle {
   Future signInWithGoogle() async {
     GoogleAuthProvider _google = GoogleAuthProvider();
     FirebaseAuth _auth = await FirebaseAuth.instance;
-    final sign_auth = _auth.signInWithProvider(_google);
+    UserCredential sign_auth = await _auth.signInWithProvider(_google);
     return sign_auth;
   }
 }

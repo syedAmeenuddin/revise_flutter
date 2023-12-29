@@ -9,10 +9,19 @@ class EmailEvent {}
 class loginEmail extends EmailEvent {
   final String email;
   final String passcode;
-  loginEmail({required this.email, required this.passcode});
+  final BuildContext context;
+
+  loginEmail(
+      {required this.email, required this.passcode, required this.context});
 }
 
 class PhoneEvent {}
+
+class test extends PhoneEvent {
+  final String updatenumber;
+
+  test({required this.updatenumber});
+}
 
 class getphnoptEvent extends PhoneEvent {
   final String number;
@@ -25,5 +34,7 @@ class verifyphnotpEvent extends PhoneEvent {
   final String otp;
   final String id;
 
-  verifyphnotpEvent({required this.otp, required this.id});
+  final BuildContext context;
+  verifyphnotpEvent(
+      {required this.otp, required this.id, required this.context});
 }

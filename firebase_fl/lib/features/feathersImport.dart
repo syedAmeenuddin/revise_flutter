@@ -16,3 +16,5 @@ export 'package:firebase_fl/features/login/bloc/login_event.dart';
 export 'package:firebase_fl/features/login/bloc/login_state.dart';
 export 'package:firebase_fl/repos/firebase_services/phoneLogin/phnlogin.dart';
 export 'package:firebase_fl/features/home/ui/homePage.dart';
+
+export 'package:firebase_fl/features/login/bloc/login_bloc.dart';

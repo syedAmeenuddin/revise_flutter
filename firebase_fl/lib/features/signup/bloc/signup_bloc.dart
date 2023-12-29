@@ -10,7 +10,7 @@ class SignBloc extends Bloc<SignEvent, SignState> {
         emit(SignState(user: user as User));
         print('done');
         Navigator.push(event.context, MaterialPageRoute(builder: (context) {
-          return Home();
+          return Login(method: 'Email');
         }));
       } else {
         ScaffoldMessenger.of(event.context).showSnackBar(SnackBar(

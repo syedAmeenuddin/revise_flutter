@@ -1,7 +1,8 @@
 import 'package:firebase_fl/features/feathersImport.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  Home({super.key, required this.code});
+  final String code;
 
   @override
   State<Home> createState() => _HomeState();
@@ -9,12 +10,44 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
+  PhoneBloc _phnBloc = PhoneBloc();
+  void initState() {
+    // _phnBloc.add(getusersdata());
+    print('----ininttt');
+
+    // print(_phnBloc.state.user);
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Text('Logged in....')],
+        children: [
+          widget.code == 'P'
+              ? BlocBuilder<PhoneBloc, PhoneState>(
+                  bloc: _phnBloc,
+                  builder: (context, state) {
+                    return state.phonenumber != ''
+                        ? Column(
+                            children: [
+                              Text(state.phonenumber),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    String newphone = '23456789';
+                                    _phnBloc.add(test(updatenumber: newphone));
+                                  },
+                                  child: Text('+'))
+                            ],
+                          )
+                        : CircularProgressIndicator();
+                  },
+                )
+              : widget.code == 'E'
+                  ? Text('')
+                  : Text(''),
+        ],
       )),
     );
   }

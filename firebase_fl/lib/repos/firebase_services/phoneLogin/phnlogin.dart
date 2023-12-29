@@ -25,8 +25,9 @@ class firebaseAuthphone {
   }
 
   Future authverifyotp(String id, String code) async {
-    PhoneAuthCredential user =
+    PhoneAuthCredential cred =
         PhoneAuthProvider.credential(smsCode: code, verificationId: id);
-    return await _auth.signInWithCredential(user);
+    User? user = (await _auth.signInWithCredential(cred)).user;
+    return user;
   }
 }
