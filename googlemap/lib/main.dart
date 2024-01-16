@@ -21,7 +21,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Completer<GoogleMapController> _controller = Completer();
 // 13.111994, 80.206815
-  static const LatLng _center = const LatLng(13.111994, 80.206815);
+  static const LatLng _center =
+      const LatLng(12.848963737487793, 77.67916870117188);
 
   void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
@@ -38,8 +39,10 @@ class _MyAppState extends State<MyApp> {
         onMapCreated: _onMapCreated,
         initialCameraPosition: CameraPosition(
           target: _center,
-          zoom: 11.0,
+          zoom: 20.0,
         ),
+        compassEnabled: true,
+        myLocationEnabled: true,
       ),
     );
   }

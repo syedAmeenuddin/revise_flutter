@@ -5,7 +5,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  localnotification.init();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: MyApp(),
@@ -20,10 +20,23 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+
   void initState() {
-    // TODO: implement initState
     super.initState();
+
+    messaging.getToken().then((value) {
+      print(value);
+    });
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage event) {
+      if (event.notification != null) {
+        localnotification.shownotification(
+            body: event.notification!.body.toString(),
+            payload: 'test',
+            title: event.notification!.title.toString());
+      }
+    });
   }
 
   Widget build(BuildContext context) {
@@ -84,6 +97,14 @@ class _MyAppState extends State<MyApp> {
                   }));
                 },
                 text: 'Phone Login',
+              ),
+              kButton(
+                onpress: () {
+                  localnotification.shownotification(
+                      body: 'test', payload: 'test', title: 'test');
+                  // localnotification.recievednotification();
+                },
+                text: 'Notii',
               ),
             ],
           ),

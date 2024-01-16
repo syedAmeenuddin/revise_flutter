@@ -9,15 +9,36 @@ class PayPage extends StatefulWidget {
 
 class _PayPageState extends State<PayPage> {
   TextEditingController amt = TextEditingController();
-
+  PayBloc _pBloc = PayBloc();
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(children: [
-        TextField(
-          controller: amt,
-        ),
-        
-      ]),
+    return BlocConsumer<PayBloc, PayState>(
+      listener: (context, state) {},
+      bloc: _pBloc,
+      builder: (context, state) {
+        return Scaffold(
+          body: SafeArea(
+            child: Center(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextField(
+                      controller: amt,
+                      decoration: InputDecoration(hintText: 'Enter Amt'),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          _pBloc.add(PayEvent(
+                              amt: int.parse(amt.text), context: context));
+                        },
+                        child: Text('Pay')),
+                  ]),
+            ),
+          ),
+        );
+      },
     );
   }
 }
