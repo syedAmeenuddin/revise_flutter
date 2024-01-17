@@ -1,3 +1,4 @@
+import 'package:counter_bloc/frontend/home/bloc/home_bloc_event.dart';
 import 'package:counter_bloc/frontend/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,17 +19,23 @@ class _infoState extends State<info> {
     return BlocBuilder<homeCounterBloc, homecounterState>(
         builder: (context, state) {
       return Scaffold(
-        body: Column(
-          children: [
-            Text('counter number'),
-            Text(state.counter.toString()),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => home()));
-                },
-                child: Text('<-  Home Page')),
-          ],
+        body: SafeArea(
+          child: Column(
+            children: [
+              Text('counter number'),
+              Text(state.counter.toString()),
+              ElevatedButton(
+                  onPressed: () {
+                    context.read<homeCounterBloc>().add(homedecrementEvent());
+                  },
+                  child: Text('-')),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('<-  Home Page')),
+            ],
+          ),
         ),
       );
     });
