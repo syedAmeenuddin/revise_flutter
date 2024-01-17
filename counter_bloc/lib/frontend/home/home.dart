@@ -14,27 +14,31 @@ class home extends StatefulWidget {
 
 class _homeState extends State<home> {
   Widget build(BuildContext context) {
-    return BlocBuilder<homeCounterBloc, homecounterState>(
-        builder: (context, state) {
-      return Scaffold(
-        body: SafeArea(
-          child: Column(
-            children: [
-              Text(state.counter.toString()),
-              ElevatedButton(
-                  onPressed: () {
-                    context.read<homeCounterBloc>().add(homeIncrementEvent());
-                  },
-                  child: Text('+')),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/info');
-                  },
-                  child: Text('info Page ->')),
-            ],
+    // return BlocBuilder<homeCounterBloc, homecounterState>(
+    //     builder: (context, state) {
+    return BlocConsumer<homeCounterBloc, homecounterState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+          body: SafeArea(
+            child: Column(
+              children: [
+                Text(state.counter.toString()),
+                ElevatedButton(
+                    onPressed: () {
+                      context.read<homeCounterBloc>().add(homeIncrementEvent());
+                    },
+                    child: Text('+')),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/info');
+                    },
+                    child: Text('info Page ->')),
+              ],
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }

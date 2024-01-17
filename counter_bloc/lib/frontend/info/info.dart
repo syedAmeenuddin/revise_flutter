@@ -16,28 +16,34 @@ class info extends StatefulWidget {
 class _infoState extends State<info> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<homeCounterBloc, homecounterState>(
-        builder: (context, state) {
-      return Scaffold(
-        body: SafeArea(
-          child: Column(
-            children: [
-              Text('counter number'),
-              Text(state.counter.toString()),
-              ElevatedButton(
-                  onPressed: () {
-                    context.read<homeCounterBloc>().add(homedecrementEvent());
-                  },
-                  child: Text('-')),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text('<-  Home Page')),
-            ],
+    // return BlocBuilder<homeCounterBloc, homecounterState>(
+    //     builder: (context, state) {
+    return BlocConsumer<homeCounterBloc, homecounterState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return Scaffold(
+          body: SafeArea(
+            child: Column(
+              children: [
+                Text('counter number'),
+                Text(state.counter.toString()),
+                ElevatedButton(
+                    onPressed: () {
+                      context.read<homeCounterBloc>().add(homedecrementEvent());
+                    },
+                    child: Text('-')),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('<-  Home Page')),
+              ],
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }
